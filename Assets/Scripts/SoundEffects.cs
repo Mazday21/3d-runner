@@ -8,19 +8,20 @@ public class SoundEffects : MonoBehaviour
     [SerializeField]private AudioSource _coinJingle;
     [SerializeField]private AudioSource _gong;
     [SerializeField] private PlayerCollisions _playerCollisions;
+    
     private void OnEnable()
     {
-        _playerCollisions.CoinCollision += RingingCoin;
+        _playerCollisions.CoinCollision += Ringing;
         _playerCollisions.ObstructionCollision += Exploded;
     }
 
     private void OnDisable()
     {
-        _playerCollisions.CoinCollision -= RingingCoin;
+        _playerCollisions.CoinCollision -= Ringing;
         _playerCollisions.ObstructionCollision -= Exploded;
     }
 
-    private void RingingCoin()
+    private void Ringing()
     {
         _coinJingle.Play();
     }

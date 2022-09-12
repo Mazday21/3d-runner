@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private PlayerController _player;
+    [SerializeField] private PlayerMoveForvard _playerMoveForvard;
     
     private void Update()
     {
-        transform.Translate(new Vector3(0, 0 , _player.Speed) * Time.deltaTime);
+        transform.Translate(new Vector3(0, 0 , _playerMoveForvard.Speed) * Time.deltaTime);
     }
 }

@@ -7,10 +7,10 @@ public class CoinSpawner : ObjectPool
     [SerializeField] private GameObject _coinPrefab;
     [SerializeField] private float _secondsBetweenSpawn;
     [SerializeField] private Transform[] _spawnPoints;
-
-    private float _elapsedTime = 0.5f;
+    
     private float _YOffset = 1.5f;
     private Transform[] _coinSpawnPoints;
+    private bool _coroutineAllowed = true;
     
     private void Start()
     {
@@ -19,18 +19,37 @@ public class CoinSpawner : ObjectPool
     
     private void Update()
     {
-        _elapsedTime += Time.deltaTime;
-
-        if (_elapsedTime >= _secondsBetweenSpawn)
+        if (_coroutineAllowed)
         {
+            StartCoroutine(DelayAppearance());
+        }
+    }
+    
+    private IEnumerator DelayAppearance()
+    {
+        _coroutineAllowed = false;
+        WaitForSeconds waitForSeconds = new WaitForSeconds(_secondsBetweenSpawn);
+        bool firstSpawned = false;
+
+        while (Time.timeScale > 0)
+        {
+            if (!firstSpawned)
+            {
+                yield return new WaitForSeconds(0.5f);
+                firstSpawned = true;
+            }
+            else
+            {
+                yield return waitForSeconds;
+            }
+            
             if (TryGameObject(out GameObject coin))
             {
-                _elapsedTime = 0;
-
                 int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
                 SetGameObject(coin, _spawnPoints[spawnPointNumber].position);
             }
         }
+        _coroutineAllowed = true;
     }
     
     private void SetGameObject(GameObject gameObject, Vector3 spawnPoint)

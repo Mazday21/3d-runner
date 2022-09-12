@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4fb6dae13654f4aaa6bd56acfe8702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 896098629}
+  _playerMoveForvard: {fileID: 896098640}
 --- !u!54 &254617210
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1175,17 +1175,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5473382721590366338, guid: 06addb134a3fbb04c8516a8cedd716e8, type: 3}
   m_PrefabInstance: {fileID: 758592136384605747}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &896098629 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1656926346, guid: d7cc147d9ce267643a6e3c0744e7bc08, type: 3}
-  m_PrefabInstance: {fileID: 942502204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545315293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9dc86329d49b5e4db6f7c8b9072f44f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &896098632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,6 +1394,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &896098640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545315293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515fb35033bd91b49b2b1b7ab1aa2bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 20
 --- !u!1 &903124923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1576,10 @@ PrefabInstance:
       propertyPath: _swipeDuration
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1656926346, guid: d7cc147d9ce267643a6e3c0744e7bc08, type: 3}
+      propertyPath: _playerMoveForvard
+      value: 
+      objectReference: {fileID: 896098640}
     - target: {fileID: 1656926347, guid: d7cc147d9ce267643a6e3c0744e7bc08, type: 3}
       propertyPath: _playerCollisions
       value: 
@@ -1662,6 +1668,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7144749860108284603, guid: d7cc147d9ce267643a6e3c0744e7bc08, type: 3}
+      propertyPath: _speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144749860108284603, guid: d7cc147d9ce267643a6e3c0744e7bc08, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 558732697}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7cc147d9ce267643a6e3c0744e7bc08, type: 3}
 --- !u!1 &950654175 stripped
@@ -2122,7 +2136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4fb6dae13654f4aaa6bd56acfe8702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 896098629}
+  _playerMoveForvard: {fileID: 896098640}
 --- !u!1 &1547938586
 GameObject:
   m_ObjectHideFlags: 0
