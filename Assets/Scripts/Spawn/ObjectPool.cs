@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject _container;
+    [SerializeField] private Transform _container;
     [SerializeField] private int _capacity;
 
     private List<GameObject> _pool = new List<GameObject>();

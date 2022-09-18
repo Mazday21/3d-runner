@@ -406,9 +406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7312f0f572e66f44e940e4b2ba5d9a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 681886622}
+  _container: {fileID: 681886624}
   _capacity: 30
-  _obstructionPrefab: {fileID: 1465253427913847200, guid: fb67272e848808447a036f8200c50b72, type: 3}
+  _obstructionPrefab: {fileID: 3141723304677609952, guid: fb67272e848808447a036f8200c50b72, type: 3}
   _secondsBetweenSpawn: 1
   _spawnPoints:
   - {fileID: 2122967218}
@@ -426,9 +426,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1872696312cea0e43b3a44bcf5048c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 681886622}
+  _container: {fileID: 681886624}
   _capacity: 30
-  _coinPrefab: {fileID: 3755641282566686013, guid: 19506191ffa3040408118afe0a40d3a3, type: 3}
+  _coinPrefab: {fileID: 3367373978367658690, guid: 19506191ffa3040408118afe0a40d3a3, type: 3}
   _secondsBetweenSpawn: 1
   _spawnPoints:
   - {fileID: 2122967218}
@@ -1407,6 +1407,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 20
+--- !u!114 &896098644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545315293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcf5ca67924fab46a3f57fccd0b64c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &903124923
 GameObject:
   m_ObjectHideFlags: 0

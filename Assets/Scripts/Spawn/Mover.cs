@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private PlayerMoveForvard _playerMoveForvard;
+    [SerializeField] private PlayerMoverForvard _playerMoveForvard;
     
     private void Update()
     {

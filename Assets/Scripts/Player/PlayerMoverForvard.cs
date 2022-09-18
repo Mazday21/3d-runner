@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveForvard : MonoBehaviour
+public class PlayerMoverForvard : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
@@ -11,6 +11,6 @@ public class PlayerMoveForvard : MonoBehaviour
     
     private void Update()
     {
-        transform.Translate(new Vector3(0, 0 , _speed) * Time.deltaTime);
+        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
     }
 }

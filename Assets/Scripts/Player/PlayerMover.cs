@@ -2,13 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _swipeDuration = 0.1f;
     [SerializeField] private float _jumpDuration = 1f;
     [SerializeField] private float _jumpHeight = 1f;
     [SerializeField] private Animator _animator;
-    [SerializeField] private PlayerMoveForvard _playerMoveForvard;
+    [SerializeField] private PlayerMoverForvard _playerMoveForvard;
     
     private float _leftLine = -3;
     private float _rightLine = 3;
@@ -23,30 +23,21 @@ public class PlayerController : MonoBehaviour
     {
         _animator.SetBool(_hashAnimGrounded, true);
     }
+
+    public void TrySwipeSide(float direction)
+    {
+        if (direction < 0 && transform.position.x > _leftLine && _coroutineAllowed)
+            StartCoroutine(SwipeSide(_leftLine));
+        else if (direction > 0 && transform.position.x < _rightLine && _coroutineAllowed)
+            StartCoroutine(SwipeSide(_rightLine));
+    }
+
+    public void TryJump()
+    {
+        if(_coroutineAllowed)
+            StartCoroutine(Jump());
+    }
     
-    private void Update()
-    {
-        SwipeMove();
-    }
-
-    private void SwipeMove()
-    {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-            _startTouchPosition = Input.GetTouch(0).position;
-
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            _endTouchPosition = Input.GetTouch(0).position;
-
-            if ((_endTouchPosition.x < _startTouchPosition.x) && transform.position.x > _leftLine  && _coroutineAllowed)
-                StartCoroutine(SwipeSide(_leftLine));
-            else if ((_endTouchPosition.x > _startTouchPosition.x) && transform.position.x < _rightLine  && _coroutineAllowed)
-                StartCoroutine(SwipeSide(_rightLine));
-            else if(Input.touchCount > 0 && _coroutineAllowed)
-                StartCoroutine(Jump());
-        }
-    }
-
     private IEnumerator SwipeSide(float offsetX)
     {
         _coroutineAllowed = false;

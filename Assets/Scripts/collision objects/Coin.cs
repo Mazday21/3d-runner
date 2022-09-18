@@ -6,9 +6,8 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private float _spinSpeed = 200;
-    
-    
+    private float _spinSpeed = 200;
+
     private void Update()
     {
         Spin();

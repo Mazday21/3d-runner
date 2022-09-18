@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinSpawner : ObjectPool
 {
-    [SerializeField] private GameObject _coinPrefab;
+    [SerializeField] private Coin _coinPrefab;
     [SerializeField] private float _secondsBetweenSpawn;
     [SerializeField] private Transform[] _spawnPoints;
     
@@ -14,7 +14,7 @@ public class CoinSpawner : ObjectPool
     
     private void Start()
     {
-        Initialize(_coinPrefab);
+        Initialize(_coinPrefab.gameObject);
     }
     
     private void Update()

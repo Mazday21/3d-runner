@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class ObstructionSpawner : ObjectPool
 {
-    [SerializeField] private GameObject _obstructionPrefab;
+    [SerializeField] private Obstruction _obstructionPrefab;
     [SerializeField] private float _secondsBetweenSpawn;
     [SerializeField] private Transform[] _spawnPoints;
     
@@ -15,7 +15,7 @@ public class ObstructionSpawner : ObjectPool
 
     private void Start()
     {
-        Initialize(_obstructionPrefab);
+        Initialize(_obstructionPrefab.gameObject);
     }
     
     private void Update()

@@ -31,7 +31,6 @@ public class PlayerCollisions : MonoBehaviour
 
     private void Explosion()
     {
-        //gameObject.transform.GetChild(2).GetComponent<ParticleSystem>().Play();
         PlayAllParticles();
     }
     
