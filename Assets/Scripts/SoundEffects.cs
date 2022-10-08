@@ -11,17 +11,17 @@ public class SoundEffects : MonoBehaviour
     
     private void OnEnable()
     {
-        _playerCollisions.CoinCollision += Ringing;
-        _playerCollisions.ObstructionCollision += Exploded;
+        _playerCollisions.CoinCollided += Ring;
+        _playerCollisions.ObstructionCollided += Exploded;
     }
 
     private void OnDisable()
     {
-        _playerCollisions.CoinCollision -= Ringing;
-        _playerCollisions.ObstructionCollision -= Exploded;
+        _playerCollisions.CoinCollided -= Ring;
+        _playerCollisions.ObstructionCollided -= Exploded;
     }
 
-    private void Ringing()
+    private void Ring()
     {
         _coinJingle.Play();
     }

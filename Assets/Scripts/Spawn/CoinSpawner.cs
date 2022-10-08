@@ -43,7 +43,7 @@ public class CoinSpawner : ObjectPool
                 yield return waitForSeconds;
             }
             
-            if (TryGameObject(out GameObject coin))
+            if (TryGetGameObject(out GameObject coin))
             {
                 int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
                 SetGameObject(coin, _spawnPoints[spawnPointNumber].position);

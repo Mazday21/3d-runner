@@ -7,19 +7,20 @@ using UnityEngine.UI;
 
 public class UIDisplay : MonoBehaviour
 {
+    [SerializeField] private PlayerScore _playerScore;
     [SerializeField] private Player _player;
     [SerializeField] private TMP_Text _scoreAmount;
     [SerializeField] private Image[] _hearts;
 
     private void OnEnable()
     {
-        _player.ScoreChanged += ScoreDraw;
+        _playerScore.ScoreChanged += ScoreDraw;
         _player.HealthChanged += HeartDraw;
     }
 
     private void OnDisable()
     {
-        _player.ScoreChanged -= ScoreDraw;
+        _playerScore.ScoreChanged -= ScoreDraw;
         _player.HealthChanged += HeartDraw;
     }
     

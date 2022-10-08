@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class PlayerCollisions : MonoBehaviour
 {
-    public event UnityAction CoinCollision;
-    public event UnityAction ObstructionCollision;
+    public event UnityAction CoinCollided;
+    public event UnityAction ObstructionCollided;
     public event UnityAction TriggerRoadEntered;
     
     private void OnTriggerEnter(Collider col)
@@ -15,12 +15,12 @@ public class PlayerCollisions : MonoBehaviour
         if (col.TryGetComponent(out Obstruction obstruction))
         {
             Explosion();
-            ObstructionCollision?.Invoke();
+            ObstructionCollided?.Invoke();
         }
         
         if (col.TryGetComponent(out Coin coin))
         {
-            CoinCollision?.Invoke();
+            CoinCollided?.Invoke();
         }
         
         if (col.TryGetComponent(out SpawnTriggerRoad spawnTriggerRoad))
