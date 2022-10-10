@@ -33,12 +33,9 @@ public class ObstructionSpawner : ObjectPool
 
         while (Time.timeScale > 0)
         {
-            if (TryGetGameObject(out GameObject obstruction))
-            {
-                int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
-                SetGameObject(obstruction, _spawnPoints[spawnPointNumber].position);
-            }
-            
+            GetOrInstantiateGameObject(out GameObject obstruction);
+            int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
+            SetGameObject(obstruction, _spawnPoints[spawnPointNumber].position);
             yield return waitForSeconds;
         }
         _coroutineAllowed = true;

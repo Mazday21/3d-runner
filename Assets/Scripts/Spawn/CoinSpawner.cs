@@ -42,12 +42,10 @@ public class CoinSpawner : ObjectPool
             {
                 yield return waitForSeconds;
             }
-            
-            if (TryGetGameObject(out GameObject coin))
-            {
-                int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
-                SetGameObject(coin, _spawnPoints[spawnPointNumber].position);
-            }
+
+            GetOrInstantiateGameObject(out GameObject coin);
+            int spawnPointNumber = Random.Range(0, _spawnPoints.Length);
+            SetGameObject(coin, _spawnPoints[spawnPointNumber].position);
         }
         _coroutineAllowed = true;
     }

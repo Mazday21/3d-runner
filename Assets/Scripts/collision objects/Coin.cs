@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
+    [SerializeField] private CoinSpawner coinSpawner;
+
     private float _spinSpeed = 200;
 
     private void Update()
@@ -18,6 +20,7 @@ public class Coin : MonoBehaviour
         if (col.TryGetComponent(out Destroyer destroyer) || col.TryGetComponent(out Player player))
         {
             gameObject.SetActive(false);
+            coinSpawner.ReturnGameObject(gameObject);
         }
     }
 

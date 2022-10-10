@@ -15,74 +15,51 @@ public class ObjectPool : MonoBehaviour
     private GameObject _prefab;
     private bool _coroutineStarted;
     private float _secondsBetweenGarbageCollect;
-    
+
+    private Queue<GameObject> _queue = new Queue<GameObject>();
+
     protected void Initialize(GameObject prefab)
     {
-        for (int i = 0; i < _minCapacity; i++)
-        {
-            GameObject spawned = Instantiate(prefab, _container.transform.position, Quaternion.Euler(-90,90,0));
-            spawned.SetActive(false);
-            _pool.Add(spawned);
-        }
+        //for (int i = 0; i < _minCapacity; i++)
+        //{
+        //    GameObject spawned = Instantiate(prefab, _container.transform.position, Quaternion.Euler(-90,90,0));
+        //    spawned.SetActive(false);
+        //    _pool.Add(spawned);
+        //}
+        GameObject spawned = Instantiate(prefab, _container.transform.position, Quaternion.Euler(-90, 90, 0));
+        _queue.Enqueue(spawned);
 
         _prefab = prefab;
     }
 
-    protected GameObject IncreaseCapacity()
+    private GameObject IncreaseCapacity()
     {
         GameObject spawned = Instantiate(_prefab, _container.transform.position, Quaternion.Euler(-90,90,0));
-        _pool.Add(spawned);
+        _queue.Enqueue(spawned);
         return spawned;
     }
 
-    protected bool TryGetGameObject(out GameObject result)
+    protected void GetOrInstantiateGameObject(out GameObject result)
     {
-        result = _pool.FirstOrDefault(p => p.activeSelf == false);
+        //result = _pool.FirstOrDefault(p => p.activeSelf == false);
 
-        if (result == null && _pool.Capacity < _maxCapacity)
+        //if (result == null && _pool.Capacity < _maxCapacity)
+        //{
+        //    result = IncreaseCapacity();
+        //    return true;
+        //}
+        
+        //return result != null;
+
+        
+        if (!_queue.TryDequeue(out result))
         {
             result = IncreaseCapacity();
-            return true;
-        }
-        
-        return result != null;
-    }
-
-    private void GarbageCollect(int minInactiveCapacity)
-    {
-        int counterInactive = 0;
-        for (int i = 0; i < _pool.Capacity; i++)
-        {
-            if (_pool[i].activeSelf == false)
-            {
-                counterInactive++;
-                if (counterInactive > minInactiveCapacity)
-                {
-                    GameObject garbage = _pool[i];
-                    _pool.Remove(_pool[i]);
-                    Destroy(garbage);
-                }
-            }
-        }
-    }
-    
-    IEnumerator DelayBetweenGarbageCollect()
-    {
-        _coroutineStarted = true;
-        
-        for(;;)
-        {
-            GarbageCollect(_minInactiveCapacity);
-            yield return new WaitForSeconds(_secondsBetweenGarbageCollect);
-            _coroutineStarted = false;
         }
     }
 
-    protected void FixedUpdate()
+    public void ReturnGameObject(GameObject gameObject)
     {
-        if (Time.timeScale > 0 && !_coroutineStarted)
-        {
-            StartCoroutine(DelayBetweenGarbageCollect());
-        }
+        _queue.Enqueue(gameObject);
     }
 }
